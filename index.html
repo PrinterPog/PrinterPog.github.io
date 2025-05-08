@@ -2,35 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Memories!!!</title>
+  <title>Interactive Image</title>
   <style>
     body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;  
-    align-items: center;      
-    background-color: #f0f0f0;
-  }
-  .container {
-    position: relative;
-    width: fit-content;
-  }
-  .clickable-area {
-    position: absolute;
-    border: 2px solid red;
-    cursor: pointer;
-    background-color: rgba(255, 0, 0, 0.3);
-  }
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center; /* Only horizontal centering */
+      background-color: #f0f0f0;
+    }
+    .container {
+      position: relative;
+      width: fit-content;
+    }
+    .clickable-area {
+      position: absolute;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: white;
+      transition: opacity 0.3s;
+    }
+    .spoiler-box {
+      background-color: rgba(0, 0, 0, 0.7);
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="I love you.png" alt="Interactive" id="main-image" />
+    <img src="your-image.jpg" alt="Interactive" id="main-image" />
 
-    <div class="clickable-area"
-         style="top: 200px; left: 100px; width: 120px; height: 80px;"
+    <!-- Spoiler-style box -->
+    <div class="clickable-area spoiler-box"
+         style="top: 250px; left: 120px; width: 120px; height: 80px;"
          onclick="this.style.display='none'">
       Click to reveal!
     </div>

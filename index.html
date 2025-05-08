@@ -14,19 +14,20 @@
     body {
       font-family: 'AsepriteFont', monospace;
       background-color: #ffffff;
-      font-size: 20;
-    }
-    {
+      font-size: 20px;  /* Adjust font size for the whole page */
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;  /* Center horizontally */
-      background-color: #ffffff;
+      align-items: center;      /* Center vertically */
+      height: 100vh;            /* Full height of the viewport */
     }
+
     .container {
       position: relative;
       width: fit-content;
     }
+
     .clickable-area {
       position: absolute;
       cursor: pointer;
@@ -37,8 +38,10 @@
       color: white;
       transition: opacity 0.3s;
     }
+
     .spoiler-box {
       background-color: rgba(69, 69, 69, 1);
+      padding: 10px;  /* Add some padding to the box */
     }
   </style>
 </head>

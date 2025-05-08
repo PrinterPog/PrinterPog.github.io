@@ -4,13 +4,18 @@
   <meta charset="UTF-8">
   <title>Memories!!!</title>
   <style>
+    @font-face {
+      font-family: 'AsepriteFont';
+      src: url('Aseprite.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     body {
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
+      font-family: 'AsepriteFont', monospace;
       background-color: #f0f0f0;
     }
+
     .container {
       position: relative;
       width: fit-content;
@@ -34,11 +39,10 @@
   <div class="container">
     <img src="I love you.png" alt="Interactive" id="main-image" />
 
-    <!-- Spoiler-style box -->
     <div class="clickable-area spoiler-box"
          style="top: 250px; left: 120px; width: 120px; height: 80px;"
          onclick="this.style.display='none'">
-      Wow! click to see da memory!!!!
+      Click da square to reveal memoryyy :O
     </div>
   </div>
 </body>

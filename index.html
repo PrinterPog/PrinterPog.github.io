@@ -37,16 +37,16 @@
 <body>
   <div class="container">
     <img src="I love you.png" alt="Interactive" id="main-image" style="top: 0%; left: 0%;" />
-    <img src="Spoilers/Spoiler10.png" class="spoiler-image" style="top: 79.06%; left: 3%;" onclick="fadeOut(this)" />
-    <img src="Spoilers/Spoiler9.png" class="spoiler-image" style="top: 66.4%; left: 0.6%;" onclick="fadeOut(this)" />
-    <img src="Spoilers/Spoiler8.png" class="spoiler-image" style="top: 52.7%; left: 1.7%;" onclick="fadeOut(this)" />
-    <img src="Spoilers/Spoiler7.png" class="spoiler-image" style="top: 48.55%; left: 60.3%;" onclick="fadeOut(this)" />
-    <img src="Spoilers/Spoiler6.png" class="spoiler-image" style="top: 24.5%; left: 60.4%;" onclick="fadeOut(this)" />
-    <img src="Spoilers/Spoiler5.png" class="spoiler-image" style="top: 31.86%; left: 2.3%;" onclick="fadeOut(this)" />
-    <img src="Spoilers/Spoiler4.png" class="spoiler-image" style="top: 19.2%; left: 0.2%;" onclick="fadeOut(this)" />
-    <img src="Spoilers/Spoiler3.png" class="spoiler-image" style="top: 3.9%; left: 73.8%;" onclick="fadeOut(this)" />
-    <img src="Spoilers/Spoiler2.png" class="spoiler-image" style="top: 6.9%; left: 29%;" onclick="fadeOut(this)" />
-    <img src="Spoilers/Spoiler1.png" class="spoiler-image" style="top: 3.33%; left: 1.9%;" onclick="fadeOut(this)" />
+    <img src="Spoilers/Spoiler10.png" class="spoiler-image" style="top: 79.06%; left: 3%;" onclick="toggleSpoiler(this)" />
+    <img src="Spoilers/Spoiler9.png" class="spoiler-image" style="top: 66.4%; left: 0.6%;" onclick="toggleSpoiler(this)" />
+    <img src="Spoilers/Spoiler8.png" class="spoiler-image" style="top: 52.7%; left: 1.7%;" onclick="toggleSpoiler(this)" />
+    <img src="Spoilers/Spoiler7.png" class="spoiler-image" style="top: 48.55%; left: 60.3%;" onclick="toggleSpoiler(this)" />
+    <img src="Spoilers/Spoiler6.png" class="spoiler-image" style="top: 24.5%; left: 60.4%;" onclick="toggleSpoiler(this)" />
+    <img src="Spoilers/Spoiler5.png" class="spoiler-image" style="top: 31.86%; left: 2.3%;" onclick="toggleSpoiler(this)" />
+    <img src="Spoilers/Spoiler4.png" class="spoiler-image" style="top: 19.2%; left: 0.2%;" onclick="toggleSpoiler(this)" />
+    <img src="Spoilers/Spoiler3.png" class="spoiler-image" style="top: 3.9%; left: 73.8%;" onclick="toggleSpoiler(this)" />
+    <img src="Spoilers/Spoiler2.png" class="spoiler-image" style="top: 6.9%; left: 29%;" onclick="toggleSpoiler(this)" />
+    <img src="Spoilers/Spoiler1.png" class="spoiler-image" style="top: 3.33%; left: 1.9%;" onclick="toggleSpoiler(this)" />
   </div>
 
   <audio id="bg-music" src="Yume Utsutsu.mp3" loop></audio>
@@ -91,8 +91,9 @@
       }, 500);
     }
 
-    function fadeOut(element) {
-      element.classList.add('fade-out');
+    // Toggle the fade-out class to hide/show the spoiler
+    function toggleSpoiler(element) {
+      element.classList.toggle('fade-out');
 
       if (!musicStarted && element.src.includes("Spoiler1.png")) {
         musicStarted = true;

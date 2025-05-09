@@ -73,7 +73,7 @@
       
       if (element.src.includes("Spoiler1.png")) {
         const player = document.getElementById("yt-player");
-        player.src = "https://www.youtube.com/embed/AJdTBPuZkHU?autoplay=1";
+        player.src="https://www.youtube.com/embed/AJdTBPuZkHU?autoplay=1&loop=1&playlist=AJdTBPuZkHU";
         player.style.display = "block";
 
         player.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[20]}', '*');

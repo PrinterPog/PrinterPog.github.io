@@ -20,8 +20,8 @@
 }
 .spoiler-image {
   position: absolute;
-  top: 0;
-  left: 0;
+  background-color: red;
+  opacity: 0.5;
   cursor: pointer;
   transition: opacity 0.13s ease;
   z-index: 10;
@@ -64,8 +64,9 @@
          style="top: 0px; left: 0px;"
          onclick="fadeOut(this)" />
         <img src="Spoilers/Spoiler1.png" class="spoiler-image"
-         style="top: 57px; left: 20px;"
-         onclick="fadeOut(this)" />
+         style="top: 0px; left: 0px;"
+         onclick="fadeOut(this)" /> <!-- 57, 20 -->
+    <div class="spoiler-box" style="top: 57px; left: 20px; width: 100px; height: 100px;" onclick="fadeOut(this)"></div>
   </div>
     <script>
     function fadeOut(element)

@@ -23,15 +23,9 @@
 
     .spoiler-image {
       position: absolute;
-      transition: opacity 0.13s ease;
+      transition: opacity 0.5s ease;
       z-index: 10;
-      pointer-events: auto;
       cursor: pointer;
-    }
-
-    .fade-out {
-      opacity: 0;
-      pointer-events: none;
     }
   </style>
 </head>
@@ -93,7 +87,7 @@
     }
 
     function toggleSpoiler(element) {
-      if (element.classList.contains('fade-out')) {
+      if (element.style.opacity == 0 || element.style.opacity == '') {
         fadeInSpoiler(element);
       } else {
         fadeOutSpoiler(element);
@@ -109,25 +103,26 @@
     }
 
     function fadeInSpoiler(element) {
-      element.classList.remove('fade-out');
+      element.style.opacity = 0;
       let opacity = 0;
-      element.style.opacity = opacity;
       const fadeInInterval = setInterval(() => {
         opacity += 0.05;
         element.style.opacity = opacity;
         if (opacity >= 1) {
           clearInterval(fadeInInterval);
-          element.style.pointerEvents = 'auto';
         }
-      }, 13);
+      }, 13); // Adjust this to control the fade-in speed
     }
 
     function fadeOutSpoiler(element) {
-      element.classList.add('fade-out');
-      element.style.pointerEvents = 'none';
-      setTimeout(() => {
-        element.style.pointerEvents = 'auto';
-      }, 13);
+      let opacity = 1;
+      const fadeOutInterval = setInterval(() => {
+        opacity -= 0.05;
+        element.style.opacity = opacity;
+        if (opacity <= 0) {
+          clearInterval(fadeOutInterval);
+        }
+      }, 13); // Adjust this to control the fade-out speed
     }
   </script>
 </body>

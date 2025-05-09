@@ -4,29 +4,35 @@
   <meta charset="UTF-8">
   <title>Memories!!!</title>
   <style>
-    body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #ffffff;
-#main-image {
-  display: block;
-}
-.container {
-  position: relative;
-  width: fit-content;
-}
-.spoiler-image {
-  position: absolute;
-  transition: opacity 0.13s ease;
-  z-index: 10;
-  pointer-events: auto;
-.fade-out {
-  opacity: 0;
-  pointer-events: none;
-}
-  </style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+  }
+
+  #main-image {
+    display: block;
+  }
+
+  .container {
+    position: relative;
+    width: fit-content;
+  }
+
+  .spoiler-image {
+    position: absolute;
+    transition: opacity 0.13s ease;
+    z-index: 10;
+    pointer-events: auto;
+  }
+
+  .fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
 </head>
 <body>
   <div class="container">

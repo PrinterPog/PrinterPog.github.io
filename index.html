@@ -55,16 +55,30 @@
   <script>
     let musicStarted = false;
 
+    function fadeInAudio(audio, targetVolume = 0.35, duration = 3000) {
+      audio.volume = 0;
+      audio.play().catch(err => {
+        console.log("Autoplay blocked or error:", err);
+      });
+
+      const step = 0.01;
+      const interval = duration * step;
+      const fade = setInterval(() => {
+        if (audio.volume < targetVolume) {
+          audio.volume = Math.min(targetVolume, audio.volume + step);
+        } else {
+          clearInterval(fade);
+        }
+      }, interval);
+    }
+
     function fadeOut(element) {
       element.classList.add('fade-out');
 
       if (!musicStarted && element.src.includes("Spoiler1.png")) {
         musicStarted = true;
         const audio = document.getElementById('bg-music');
-        audio.volume = 0.2;
-        audio.play().catch(err => {
-          console.log("Autoplay blocked or error:", err);
-        });
+        fadeInAudio(audio, 0.35, 3000); // 3 seconds to fade to 35% volume
       }
     }
   </script>

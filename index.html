@@ -54,43 +54,48 @@
   <script>
     let musicStarted = false;
 
-    function fadeInAudio(audio, targetVolume = 0.35, duration = 6969) {
-      let step = 0.01;
-      let interval = duration * step;
+function fadeInAudio(audio, targetVolume = 0.35, duration = 6969) {
+  let step = 0.01;
+  let interval = duration * step;
+  audio.volume = 0;
+  const fade = setInterval(() => {
+    if (audio.volume < targetVolume) {
+      audio.volume = Math.min(targetVolume, audio.volume + step);
+    } else {
+      clearInterval(fade);
+    }
+  }, interval);
+}
+
+function fadeOutAudio(audio, duration = 6969) {
+  const step = 0.01;
+  const interval = duration * step;
+  const fade = setInterval(() => {
+    if (audio.volume > step) {
+      audio.volume = Math.max(0, audio.volume - step);
+    } else {
       audio.volume = 0;
-      const fade = setInterval(() => {
-        if (audio.volume < targetVolume) {
-          audio.volume = Math.min(targetVolume, audio.volume + step);
-        } else {
-          clearInterval(fade);
-        }
-      }, interval);
-    }
+      audio.pause();
+      clearInterval(fade);
 
-    function fadeOutAudio(audio, duration = 6969) {
-      const step = 0.01;
-      const interval = duration * step;
-      const fade = setInterval(() => {
-        if (audio.volume > step) {
-          audio.volume = Math.max(0, audio.volume - step);
-        } else {
-          audio.volume = 0;
-          audio.pause();
-          clearInterval(fade);
-        }
-      }, interval);
+      // Start fading in the volume after the fade-out completes (after 1 second)
+      setTimeout(() => {
+        fadeInAudio(audio);
+        audio.play().catch(err => console.log("Autoplay error:", err));
+      }, 1000);  // Delay the fade-in by 1 second after fade-out ends
     }
+  }, interval);
+}
 
-    function monitorAudioFadeOut(audio) {
-      const fadeStartTime = 308;
-      const interval = setInterval(() => {
-        if (audio.currentTime >= fadeStartTime) {
-          clearInterval(interval);
-          fadeOutAudio(audio, 6969);
-        }
-      }, 500);
+function monitorAudioFadeOut(audio) {
+  const fadeStartTime = 308;
+  const interval = setInterval(() => {
+    if (audio.currentTime >= fadeStartTime) {
+      clearInterval(interval);
+      fadeOutAudio(audio, 6969);
     }
-
+  }, 500);
+}
     // Toggle the fade-out class to hide/show the spoiler
     function toggleSpoiler(element) {
       element.classList.toggle('fade-out');

@@ -92,19 +92,15 @@
     }
 
     function toggleSpoiler(element) {
-      // If the spoiler is visible, fade it out
       if (element.classList.contains('fade-out')) {
         element.classList.remove('fade-out');
         fadeInSpoiler(element);
       } else {
-        // If the spoiler is hidden, fade it out
         element.classList.add('fade-out');
         setTimeout(() => {
-          element.style.pointerEvents = 'auto'; // Reset pointer-events after fade-out
-        }, 1000); // Allow some time for the fade-out to complete before re-enabling click
+          element.style.pointerEvents = 'auto'; 
+        }, 1000); 
       }
-
-      // Start the music when Spoiler1 is clicked for the first time
       if (!musicStarted && element.src.includes("Spoiler1.png")) {
         musicStarted = true;
         const audio = document.getElementById('bg-music');
@@ -114,7 +110,6 @@
       }
     }
 
-    // Function to fade in the spoiler when clicked back
     function fadeInSpoiler(element) {
       let opacity = 0;
       element.style.opacity = opacity;
@@ -123,9 +118,9 @@
         element.style.opacity = opacity;
         if (opacity >= 1) {
           clearInterval(fadeInInterval);
-          element.style.pointerEvents = 'auto'; // Reset pointer-events after fade-in
+          element.style.pointerEvents = 'auto';
         }
-      }, 13); // Adjust the interval for faster/slower fading
+      }, 13);
     }
 
   </script>

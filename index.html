@@ -62,6 +62,11 @@
     <script>
     function fadeOut(element)
       { element.classList.add('fade-out'); }
+          if (element.src.includes("Spoiler1.png")) {
+      const player = document.getElementById("yt-player");
+      player.src="https://www.youtube.com/watch?v=AJdTBPuZkHU?autoplay=1";
+      player.style.display = "block";
+    }
   </script>
 </body>
 </html>

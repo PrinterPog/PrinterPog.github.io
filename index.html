@@ -49,20 +49,15 @@
     <img src="Spoilers/Spoiler1.png" class="spoiler-image" style="top: 3.33%; left: 1.9%;" onclick="fadeOut(this)" />
   </div>
 
-  <!-- Hidden audio player -->
   <audio id="bg-music" src="Yume Utsutsu.mp3" loop></audio>
 
   <script>
     let musicStarted = false;
 
     function fadeInAudio(audio, targetVolume = 0.35, duration = 6969) {
+      let step = 0.01;
+      let interval = duration * step;
       audio.volume = 0;
-      audio.play().catch(err => {
-        console.log("Autoplay blocked or error:", err);
-      });
-
-      const step = 0.01;
-      const interval = duration * step;
       const fade = setInterval(() => {
         if (audio.volume < targetVolume) {
           audio.volume = Math.min(targetVolume, audio.volume + step);
@@ -72,13 +67,39 @@
       }, interval);
     }
 
+    function fadeOutAudio(audio, duration = 6969) {
+      const step = 0.01;
+      const interval = duration * step;
+      const fade = setInterval(() => {
+        if (audio.volume > step) {
+          audio.volume = Math.max(0, audio.volume - step);
+        } else {
+          audio.volume = 0;
+          audio.pause();
+          clearInterval(fade);
+        }
+      }, interval);
+    }
+
+    function monitorAudioFadeOut(audio) {
+      const fadeStartTime = 188;
+      const interval = setInterval(() => {
+        if (audio.currentTime >= fadeStartTime) {
+          clearInterval(interval);
+          fadeOutAudio(audio, 6969);
+        }
+      }, 500);
+    }
+
     function fadeOut(element) {
       element.classList.add('fade-out');
 
       if (!musicStarted && element.src.includes("Spoiler1.png")) {
         musicStarted = true;
         const audio = document.getElementById('bg-music');
-        fadeInAudio(audio, 0.35, 6969);
+        fadeInAudio(audio);
+        audio.play().catch(err => console.log("Autoplay error:", err));
+        monitorAudioFadeOut(audio);
       }
     }
   </script>

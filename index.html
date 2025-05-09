@@ -16,13 +16,6 @@
       display: block;
     }
 
-    #player {
-      position: absolute;
-      width: 0;
-      height: 0;
-      pointer-events: none;
-    }
-
     .container {
       position: relative;
       width: fit-content;
@@ -56,42 +49,22 @@
     <img src="Spoilers/Spoiler1.png" class="spoiler-image" style="top: 3.33%; left: 1.9%;" onclick="fadeOut(this)" />
   </div>
 
-  <div id="player"></div>
-
-  <script src="https://www.youtube.com/iframe_api"></script>
+  <!-- Hidden audio player -->
+  <audio id="bg-music" src="media/bg-music.mp3" loop></audio>
 
   <script>
-    let player;
     let musicStarted = false;
-
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'AJdTBPuZkHU',
-        playerVars: {
-          autoplay: 0,
-          loop: 1,
-          playlist: 'AJdTBPuZkHU',
-          controls: 0,
-          modestbranding: 1
-        },
-        events: {
-          onReady: function (event) {
-            player.setVolume(20);
-          }
-        }
-      });
-    }
 
     function fadeOut(element) {
       element.classList.add('fade-out');
 
       if (!musicStarted && element.src.includes("Spoiler1.png")) {
         musicStarted = true;
-        if (player && typeof player.playVideo === "function") {
-          player.playVideo();
-        }
+        const audio = document.getElementById('bg-music');
+        audio.volume = 0.2;
+        audio.play().catch(err => {
+          console.log("Autoplay blocked or error:", err);
+        });
       }
     }
   </script>

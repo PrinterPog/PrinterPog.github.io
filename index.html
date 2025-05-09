@@ -31,6 +31,7 @@
 
     .fade-out {
       opacity: 0;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -93,14 +94,11 @@
 
     function toggleSpoiler(element) {
       if (element.classList.contains('fade-out')) {
-        element.classList.remove('fade-out');
         fadeInSpoiler(element);
       } else {
-        element.classList.add('fade-out');
-        setTimeout(() => {
-          element.style.pointerEvents = 'auto'; 
-        }, 1000); 
+        fadeOutSpoiler(element);
       }
+
       if (!musicStarted && element.src.includes("Spoiler1.png")) {
         musicStarted = true;
         const audio = document.getElementById('bg-music');
@@ -110,7 +108,9 @@
       }
     }
 
+    // Function to fade in the spoiler
     function fadeInSpoiler(element) {
+      element.classList.remove('fade-out');
       let opacity = 0;
       element.style.opacity = opacity;
       const fadeInInterval = setInterval(() => {
@@ -121,6 +121,14 @@
           element.style.pointerEvents = 'auto';
         }
       }, 13);
+    }
+
+    function fadeOutSpoiler(element) {
+      element.classList.add('fade-out');
+      element.style.pointerEvents = 'none';
+      setTimeout(() => {
+        element.style.pointerEvents = 'auto';
+      }, 1000);
     }
 
   </script>

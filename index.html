@@ -55,7 +55,7 @@
   <script>
     let musicStarted = false;
 
-    function fadeInAudio(audio, targetVolume = 0.35, duration = 3000) {
+    function fadeInAudio(audio, targetVolume = 0.35, duration = 6969) {
       audio.volume = 0;
       audio.play().catch(err => {
         console.log("Autoplay blocked or error:", err);
@@ -78,7 +78,7 @@
       if (!musicStarted && element.src.includes("Spoiler1.png")) {
         musicStarted = true;
         const audio = document.getElementById('bg-music');
-        fadeInAudio(audio, 0.35, 3000); // 3 seconds to fade to 35% volume
+        fadeInAudio(audio, 0.35, 6969);
       }
     }
   </script>

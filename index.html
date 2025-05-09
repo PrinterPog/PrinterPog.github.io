@@ -26,6 +26,7 @@
       transition: opacity 0.5s ease;
       z-index: 10;
       cursor: pointer;
+      opacity: 1;
     }
   </style>
 </head>
@@ -87,7 +88,8 @@
     }
 
     function toggleSpoiler(element) {
-      if (element.style.opacity == 0 || element.style.opacity == '') {
+      // Check if the current opacity is 1 (visible), if so fade it out, otherwise fade it in
+      if (parseFloat(element.style.opacity) === 0) {
         fadeInSpoiler(element);
       } else {
         fadeOutSpoiler(element);
@@ -103,26 +105,33 @@
     }
 
     function fadeInSpoiler(element) {
-      element.style.opacity = 0;
+      // Ensure any previous fade in/out is stopped
+      clearInterval(element.fadeInterval);
+
       let opacity = 0;
-      const fadeInInterval = setInterval(() => {
+      element.style.opacity = opacity;
+      element.fadeInterval = setInterval(() => {
         opacity += 0.05;
         element.style.opacity = opacity;
         if (opacity >= 1) {
-          clearInterval(fadeInInterval);
+          clearInterval(element.fadeInterval);
         }
-      }, 13); // Adjust this to control the fade-in speed
+      }, 13);
     }
 
     function fadeOutSpoiler(element) {
+      // Ensure any previous fade in/out is stopped
+      clearInterval(element.fadeInterval);
+
       let opacity = 1;
-      const fadeOutInterval = setInterval(() => {
+      element.style.opacity = opacity;
+      element.fadeInterval = setInterval(() => {
         opacity -= 0.05;
         element.style.opacity = opacity;
         if (opacity <= 0) {
-          clearInterval(fadeOutInterval);
+          clearInterval(element.fadeInterval);
         }
-      }, 13); // Adjust this to control the fade-out speed
+      }, 13);
     }
   </script>
 </body>

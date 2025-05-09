@@ -59,13 +59,17 @@
         <img src="Spoilers/Spoiler1.png" class="spoiler-image"
          style="top: 3.33%; left: 1.9%;" onclick="fadeOut(this)"/>
   </div>
-    <script>
-    function fadeOut(element)
-      { element.classList.add('fade-out'); }
-          if (element.src.includes("Spoiler1.png")) {
-      const player = document.getElementById("yt-player");
-      player.src="https://www.youtube.com/watch?v=AJdTBPuZkHU?autoplay=1";
-      player.style.display = "block";
+  <iframe id="yt-player" width="0" height="0" src="" allow="autoplay" style="display: none;"></iframe>
+
+  <script>
+    function fadeOut(element) {
+      element.classList.add('fade-out');
+      
+      if (element.src.includes("Spoiler1.png")) {
+        const player = document.getElementById("yt-player");
+        player.src = "https://www.youtube.com/embed/AJdTBPuZkHU?autoplay=1";
+        player.style.display = "block";
+      }
     }
   </script>
 </body>

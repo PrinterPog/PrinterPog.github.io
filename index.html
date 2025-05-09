@@ -10,11 +10,22 @@
   display: flex;
   justify-content: center;
   background-color: #ffffff;
-}
     .container {
-      position: relative;
-      width: fit-content;
-    }
+  position: relative;
+  width: fit-content;
+}
+.spoiler-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+  z-index: 10;
+}
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
   </style>
 </head>
 <body>

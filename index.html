@@ -88,8 +88,9 @@
     }
 
     function toggleSpoiler(element) {
-      // Check if the current opacity is 1 (visible), if so fade it out, otherwise fade it in
-      if (parseFloat(element.style.opacity) === 0) {
+      // Check the current opacity to decide if we need to fade in or fade out
+      const currentOpacity = parseFloat(element.style.opacity);
+      if (currentOpacity === 0) {
         fadeInSpoiler(element);
       } else {
         fadeOutSpoiler(element);
@@ -105,31 +106,28 @@
     }
 
     function fadeInSpoiler(element) {
-      // Ensure any previous fade in/out is stopped
-      clearInterval(element.fadeInterval);
-
+      // Reset opacity to 0 before starting the fade-in
+      element.style.opacity = 0;
+      
+      // Apply fade-in
       let opacity = 0;
-      element.style.opacity = opacity;
-      element.fadeInterval = setInterval(() => {
+      const fadeInInterval = setInterval(() => {
         opacity += 0.05;
         element.style.opacity = opacity;
         if (opacity >= 1) {
-          clearInterval(element.fadeInterval);
+          clearInterval(fadeInInterval);
         }
       }, 13);
     }
 
     function fadeOutSpoiler(element) {
-      // Ensure any previous fade in/out is stopped
-      clearInterval(element.fadeInterval);
-
+      // Apply fade-out
       let opacity = 1;
-      element.style.opacity = opacity;
-      element.fadeInterval = setInterval(() => {
+      const fadeOutInterval = setInterval(() => {
         opacity -= 0.05;
         element.style.opacity = opacity;
         if (opacity <= 0) {
-          clearInterval(element.fadeInterval);
+          clearInterval(fadeOutInterval);
         }
       }, 13);
     }
